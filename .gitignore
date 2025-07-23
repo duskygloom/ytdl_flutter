@@ -1,0 +1,14 @@
+.dart_tool/
+.idea/
+.vscode/
+build/
+test/
+
+pubspec.lock
+analysis_options.yaml
+devtools_options.yaml
+.metadata
+.flutter-plugins-dependencies
+
+# FVM Version Cache
+.fvm/
