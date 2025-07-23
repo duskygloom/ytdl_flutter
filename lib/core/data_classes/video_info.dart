@@ -1,3 +1,4 @@
+import 'package:ytdl/core/data_classes/basic_info.dart';
 import 'package:ytdl/core/data_classes/info_type.dart';
 import 'package:ytdl/core/data_classes/media_info.dart';
 
@@ -24,6 +25,10 @@ class VideoInfo extends MediaInfo {
   }
 
   static VideoInfo fromMedia(MediaInfo info) {
+    return VideoInfo(info.original);
+  }
+
+  static VideoInfo fromBasic(BasicInfo info) {
     return VideoInfo(info.original);
   }
 }

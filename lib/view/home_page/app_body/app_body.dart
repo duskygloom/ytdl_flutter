@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ytdl/model/providers/search_result_provider.dart';
-import 'package:ytdl/view/home_page/app_body/search_result_widget.dart';
+import 'package:ytdl/view/home_page/app_body/search_result_widget/search_result_widget.dart';
 import 'package:ytdl/view/home_page/app_body/tweak_display_row.dart';
 
 class AppBody extends StatelessWidget {

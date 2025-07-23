@@ -17,3 +17,21 @@ class SquareThumbnail extends StatelessWidget {
     );
   }
 }
+
+class CircularThumbnail extends StatelessWidget {
+  const CircularThumbnail({super.key, required this.url, required this.width});
+
+  final String url;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: width,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9999)),
+      clipBehavior: Clip.antiAlias,
+      child: Image.network(url),
+    );
+  }
+}

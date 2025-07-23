@@ -10,7 +10,6 @@ import 'package:ytdl/core/data_classes/video_info.dart';
 import 'package:ytdl/model/api.dart';
 import 'package:ytdl/model/config.dart';
 import 'package:ytdl/model/providers/playlist_provider.dart';
-import 'package:ytdl/model/providers/search_filter_provider.dart';
 import 'package:ytdl/view/home_page/mini_player/mini_player_ctrl.dart';
 import 'package:ytdl/view/home_page/mini_player/mini_player_info.dart';
 
@@ -121,17 +120,16 @@ class _MiniPlayerState extends State<MiniPlayer> {
     setState(() => searching = true);
     if (playlist.current != null) {
       final api = Api.fromContext(context, listen: false);
-      final filter = context.read<SearchFilterProvider>().filter;
       final config = Config.fromContext(context, listen: false);
       // stream info from config and filter
       final List<StreamInfo> streams;
-      if (filter == 'Songs') {
+      if (playlist.current!.resultType == 'song') {
         streams = await api.getStreams(
           SongInfo.fromMedia(playlist.current!).url,
           ext: config.audioExt,
           quality: config.audioQlt,
         );
-      } else if (filter == 'Videos') {
+      } else if (playlist.current!.resultType == 'video') {
         streams = await api.getStreams(
           VideoInfo.fromMedia(playlist.current!).url,
           // change to video ext and qlt after video playback is stable

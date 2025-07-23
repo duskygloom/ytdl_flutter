@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:ytdl/core/app_theme.dart';
 import 'package:ytdl/model/config.dart';
 import 'package:ytdl/model/providers/search_filter_provider.dart';
+import 'package:ytdl/model/providers/search_query_provider.dart';
 import 'package:ytdl/view/home_page/home_page.dart';
 import 'package:ytdl/model/providers/playlist_provider.dart';
 import 'package:ytdl/model/providers/search_result_provider.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
         Provider(create: (context) => AppDir(appPath)),
         Provider(create: (context) => AudioPlayer()),
         Provider(create: (context) => OverlayPortalController()),
+        ChangeNotifierProvider(create: (context) => SearchQueryProvider()),
         ChangeNotifierProvider(create: (context) => SearchFilterProvider()),
         ChangeNotifierProvider(create: (context) => SearchResultProvider()),
         ChangeNotifierProvider(create: (context) => PlaylistProvider()),

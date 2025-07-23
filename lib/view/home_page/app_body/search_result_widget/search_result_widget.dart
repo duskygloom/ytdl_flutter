@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
+import 'package:ytdl/core/data_classes/artist_info.dart';
 import 'package:ytdl/core/data_classes/basic_info.dart';
 import 'package:ytdl/core/data_classes/media_info.dart';
+import 'package:ytdl/core/data_classes/song_info.dart';
+import 'package:ytdl/core/data_classes/video_info.dart';
 import 'package:ytdl/model/providers/playlist_provider.dart';
-import 'package:ytdl/view/core_view/square_thumbnail.dart';
+import 'package:ytdl/view/home_page/app_body/search_result_widget/artist_tile.dart';
+import 'package:ytdl/view/home_page/app_body/search_result_widget/song_tile.dart';
+import 'package:ytdl/view/home_page/app_body/search_result_widget/video_tile.dart';
 
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({super.key, required this.result});
@@ -13,31 +17,20 @@ class SearchResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ListTile child;
+    final Widget child;
 
     switch (result.resultType) {
       case 'song':
+        child = SongTile(result: SongInfo.fromBasic(result));
+        break;
       case 'video':
-        child = ListTile(
-          title: Text(
-            MediaInfo.fromBasic(result).title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: Text(
-            MediaInfo.fromBasic(result).artistStr,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          leading: SquareThumbnail(
-            url: MediaInfo.fromBasic(result).thumbnail50,
-            width: 48, // 48 is the height of leading widget (maybe)
-          ),
-          trailing: IconButton(onPressed: () {}, icon: Icon(Symbols.more_vert)),
-        );
+        child = VideoTile(result: VideoInfo.fromBasic(result));
+        break;
+      case 'artist':
+        child = ArtistTile(result: ArtistInfo.fromBasic(result));
         break;
       default:
-        child = ListTile();
+        child = ListTile(title: Text('Unimplemented'));
     }
 
     return Material(

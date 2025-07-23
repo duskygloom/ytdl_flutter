@@ -22,6 +22,10 @@ class ArtistInfo extends BasicInfo {
     assert(isInfoSufficient(original));
   }
 
+  static ArtistInfo fromBasic(BasicInfo info) {
+    return ArtistInfo(info.original);
+  }
+
   String get browseId => original['browseId']!;
   String get shuffleId => original['shuffleId']!;
   String get radioId => original['radioId']!;

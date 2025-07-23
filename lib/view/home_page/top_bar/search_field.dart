@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:ytdl/model/api.dart';
 import 'package:ytdl/model/config.dart';
 import 'package:ytdl/model/providers/search_filter_provider.dart';
+import 'package:ytdl/model/providers/search_query_provider.dart';
 import 'package:ytdl/model/providers/search_result_provider.dart';
 
 class SearchField extends StatefulWidget {
@@ -18,13 +19,20 @@ class _SearchFieldState extends State<SearchField> {
 
   @override
   Widget build(BuildContext context) {
+    final query = context.read<SearchQueryProvider>().query;
+    final controller = TextEditingController(text: query);
+
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         prefixIcon: Icon(Symbols.search),
-        hintText: 'What do you want to listen to?',
+        hintText: 'What do you want to listen today?',
         filled: true,
         suffixIcon: loading ? Icon(Symbols.more_horiz) : null,
       ),
+      onChanged: (value) {
+        context.read<SearchQueryProvider>().updateQuery(value);
+      },
       onSubmitted: (value) async {
         setState(() => loading = true);
         final api = Api.fromContext(context, listen: false);

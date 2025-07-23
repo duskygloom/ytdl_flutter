@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SearchFilterProvider extends ChangeNotifier {
-  static const filters = ['Songs', 'Videos', 'Playlists', 'Albums', 'Artists'];
+  static const filters = [
+    'All',
+    'Songs',
+    'Videos',
+    'Playlists',
+    'Albums',
+    'Artists',
+  ];
 
   String _filter = filters.first;
 
