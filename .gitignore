@@ -9,6 +9,7 @@ analysis_options.yaml
 devtools_options.yaml
 .metadata
 .flutter-plugins-dependencies
+generated_*
 
 # FVM Version Cache
 .fvm/
